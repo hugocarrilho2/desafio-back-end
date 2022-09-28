@@ -22,14 +22,5 @@ public class Cargo
     private String nome;
 
     @ManyToOne
-    @JoinColumn(name = "setor_Id")
     private Setor setor;
-
-
-
-
-
-
-
-
 }

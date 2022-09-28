@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Collection;
+import java.util.List;
 
 @Getter
 @Setter
@@ -14,6 +14,6 @@ import java.util.Collection;
 public class DtoSetor
 {
     private String nome;
-    private Collection<DtoCargo> cargos;
+    private List<DtoCargo> cargos;
 
 }

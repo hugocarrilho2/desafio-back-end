@@ -1,7 +1,8 @@
 package com.example.testeBackEnd.controller;
 
 import com.example.testeBackEnd.dto.DtoSetor;
-import com.example.testeBackEnd.repository.SetorRepository;
+import com.example.testeBackEnd.model.Setor;
+import com.example.testeBackEnd.services.CargoService;
 import com.example.testeBackEnd.services.SetorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,12 +16,20 @@ public class SetorController
     @Autowired
     private SetorService setorService;
 
-    @PostMapping
-    public ResponseEntity<?> buscarSetores(@RequestBody DtoSetor dtoSetor) throws Exception {
-        setorService.verificaSetorExistente(dtoSetor);
-        setorService.salvar(dtoSetor);
+    @Autowired
+    private CargoService cargoService;
 
+    @PostMapping
+    public ResponseEntity<?> salvarSetor(@RequestBody DtoSetor dtoSetor) throws Exception {
+        setorService.verificaSetorExistente(dtoSetor);
+        Setor setorSalvo = setorService.salvar(dtoSetor);
+        cargoService.verificaCargoExistente(dtoSetor.getCargos());
+        cargoService.salvar(dtoSetor.getCargos(), setorSalvo);
         return ResponseEntity.status(HttpStatus.CREATED).body("Setor criado com sucesso!");
     }
 
+    @GetMapping
+    public ResponseEntity<?> listarSetores(){
+        return ResponseEntity.status(HttpStatus.OK).body(setorService.listarSetores());
+    }
 }

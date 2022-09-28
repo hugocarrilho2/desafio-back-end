@@ -10,11 +10,5 @@ public class TesteBackEndApplication {
 	public static void main(String[] args)
 	{
 		SpringApplication.run(TesteBackEndApplication.class, args);
-
-
-
-
-
-
 	}
 }

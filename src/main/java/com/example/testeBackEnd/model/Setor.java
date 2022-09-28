@@ -6,7 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Getter
 @Setter
@@ -23,9 +25,10 @@ public class Setor
     private String nome;
 
     @OneToMany(mappedBy = "setor", cascade = CascadeType.ALL)
-    private Collection<Cargo> cargos;
+    private List<Cargo> cargos = new ArrayList<>();
 
-
-
-
+    public void adicionarCargo(Cargo cargo){
+        cargo.setSetor(this);
+        this.getCargos().add(cargo);
+    }
 }
