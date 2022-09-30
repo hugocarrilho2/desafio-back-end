@@ -1,0 +1,197 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Setor</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.example.testeBackEnd.model</a>
+</div>
+
+<h1>Coverage Summary for Class: Setor (com.example.testeBackEnd.model)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Setor</td>
+<td class="coverageStat">
+  <span class="percent">
+    90,9%
+  </span>
+  <span class="absValue">
+    (10/11)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    94,4%
+  </span>
+  <span class="absValue">
+    (17/18)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">Setor$HibernateProxy$CYPxI8YE</td>
+  </tr>
+  <tr>
+    <td class="name">Setor$HibernateProxy$GQzYsCVR</td>
+  </tr>
+  <tr>
+    <td class="name">Setor$HibernateProxy$WX6EEt1l</td>
+  </tr>
+  <tr>
+    <td class="name">Setor$HibernateProxy$YnR8tL9t</td>
+  </tr>
+  <tr>
+    <td class="name">Setor$HibernateProxy$ZKuCR9kf</td>
+  </tr>
+  <tr>
+    <td class="name">Setor$SetorBuilder</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    91,7%
+  </span>
+  <span class="absValue">
+    (11/12)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    94,7%
+  </span>
+  <span class="absValue">
+    (18/19)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.example.testeBackEnd.model;
+&nbsp;
+&nbsp;import com.example.testeBackEnd.dto.DtoSetor;
+&nbsp;import lombok.*;
+&nbsp;import org.springframework.beans.BeanUtils;
+&nbsp;
+&nbsp;import javax.persistence.*;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.List;
+&nbsp;import java.util.Objects;
+&nbsp;
+<b class="fc">&nbsp;@Builder</b>
+&nbsp;@Getter
+<b class="fc">&nbsp;@Setter</b>
+<b class="fc">&nbsp;@AllArgsConstructor</b>
+<b class="fc">&nbsp;@NoArgsConstructor</b>
+&nbsp;@Entity(name = &quot;setor&quot;)
+&nbsp;public class Setor {
+&nbsp;    @Id
+&nbsp;    @GeneratedValue(strategy = GenerationType.IDENTITY)
+<b class="fc">&nbsp;    private Long id;</b>
+&nbsp;
+&nbsp;    @Column(nullable = false, unique = true)
+<b class="fc">&nbsp;    private String nome;</b>
+&nbsp;
+<b class="fc">&nbsp;    @OneToMany(mappedBy = &quot;setor&quot;, cascade = CascadeType.ALL, orphanRemoval = true)</b>
+<b class="fc">&nbsp;    private List&lt;Cargo&gt; cargos = new ArrayList&lt;&gt;();</b>
+&nbsp;
+&nbsp;    public static DtoSetor converterParaDto(Setor setor) {
+<b class="fc">&nbsp;        DtoSetor dtoSetor = new DtoSetor();</b>
+<b class="fc">&nbsp;        BeanUtils.copyProperties(setor, dtoSetor);</b>
+&nbsp;
+<b class="fc">&nbsp;        return dtoSetor;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public static Setor converterParaSetor(DtoSetor dtoSetor) {
+<b class="fc">&nbsp;        Setor setor = new Setor();</b>
+<b class="fc">&nbsp;        BeanUtils.copyProperties(dtoSetor, setor);</b>
+<b class="fc">&nbsp;        setor.setId(null);</b>
+&nbsp;
+<b class="fc">&nbsp;        return setor;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void adicionarCargo(Cargo novoCargo) {
+<b class="fc">&nbsp;        novoCargo.setSetor(this);</b>
+<b class="fc">&nbsp;        this.getCargos().add(novoCargo);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void removerCargo(Cargo cargo) {
+<b class="nc">&nbsp;        this.getCargos().remove(cargo);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-09-30 18:47</div>
+</div>
+</body>
+</html>

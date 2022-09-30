@@ -1,13 +1,13 @@
 package com.example.testeBackEnd.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.example.testeBackEnd.dto.DtoTrabalhador;
+import lombok.*;
+import org.springframework.beans.BeanUtils;
 
 import javax.persistence.*;
 
 
+@Builder
 @Getter
 @Setter
 @AllArgsConstructor
@@ -30,5 +30,20 @@ public class Trabalhador
 
     @OneToOne
     private Setor setor;
+
+    public static DtoTrabalhador converterParaDto(Trabalhador trabalhador) {
+        DtoTrabalhador dtoTrabalhador = new DtoTrabalhador();
+        BeanUtils.copyProperties(trabalhador, dtoTrabalhador);
+
+        return dtoTrabalhador;
+    }
+
+    public static Trabalhador converterParaTrabalhador(DtoTrabalhador dtoTrabalhador) {
+        Trabalhador trabalhador = new Trabalhador();
+        BeanUtils.copyProperties(dtoTrabalhador, trabalhador);
+
+        return trabalhador;
+
+    }
 
 }

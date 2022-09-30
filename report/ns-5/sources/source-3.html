@@ -1,0 +1,142 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > HandlerException</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.example.testeBackEnd.exceptions</a>
+</div>
+
+<h1>Coverage Summary for Class: HandlerException (com.example.testeBackEnd.exceptions)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">HandlerException</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (13/13)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.example.testeBackEnd.exceptions;
+&nbsp;
+&nbsp;import lombok.AllArgsConstructor;
+&nbsp;import org.springframework.http.HttpStatus;
+&nbsp;import org.springframework.http.ResponseEntity;
+&nbsp;import org.springframework.web.bind.annotation.ExceptionHandler;
+&nbsp;import org.springframework.web.bind.annotation.RestControllerAdvice;
+&nbsp;
+&nbsp;import java.time.OffsetDateTime;
+&nbsp;
+<b class="fc">&nbsp;@AllArgsConstructor</b>
+&nbsp;@RestControllerAdvice
+&nbsp;public class HandlerException
+&nbsp;{
+&nbsp;    @ExceptionHandler(BusinessException.class)
+&nbsp;    public ResponseEntity&lt;Object&gt; handlerBusinessException(BusinessException businessException)
+&nbsp;    {
+<b class="fc">&nbsp;        HttpStatus status = HttpStatus.BAD_REQUEST;</b>
+<b class="fc">&nbsp;        ErrorMessage errorMessage = new ErrorMessage();</b>
+<b class="fc">&nbsp;        errorMessage.setTimestamp(OffsetDateTime.now());</b>
+<b class="fc">&nbsp;        errorMessage.setMessage(businessException.getMessage());</b>
+<b class="fc">&nbsp;        errorMessage.setStatus(status.value());</b>
+&nbsp;
+<b class="fc">&nbsp;        return ResponseEntity.status(status).body(errorMessage);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @ExceptionHandler(NotFoundException.class)
+&nbsp;    public ResponseEntity&lt;Object&gt; handlerNotFoundException(NotFoundException notFoundException)
+&nbsp;    {
+<b class="fc">&nbsp;        HttpStatus status = HttpStatus.BAD_REQUEST;</b>
+<b class="fc">&nbsp;        ErrorMessage errorMessage = new ErrorMessage();</b>
+<b class="fc">&nbsp;        errorMessage.setTimestamp(OffsetDateTime.now());</b>
+<b class="fc">&nbsp;        errorMessage.setMessage(notFoundException.getMessage());</b>
+<b class="fc">&nbsp;        errorMessage.setStatus(status.value());</b>
+&nbsp;
+<b class="fc">&nbsp;        return ResponseEntity.status(status).body(errorMessage);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-09-30 18:47</div>
+</div>
+</body>
+</html>

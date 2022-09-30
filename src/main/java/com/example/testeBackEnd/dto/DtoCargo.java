@@ -1,18 +1,21 @@
 package com.example.testeBackEnd.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.*;
 
 import java.util.Collection;
 
+@Builder
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class DtoCargo
-{
+public class DtoCargo {
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private Long id;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String nome;
 
 }

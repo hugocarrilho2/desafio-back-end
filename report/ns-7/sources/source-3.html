@@ -1,0 +1,237 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > TrabalhadorServiceImpl</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.example.testeBackEnd.services.impl</a>
+</div>
+
+<h1>Coverage Summary for Class: TrabalhadorServiceImpl (com.example.testeBackEnd.services.impl)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">TrabalhadorServiceImpl</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (9/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    94,1%
+  </span>
+  <span class="absValue">
+    (32/34)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">TrabalhadorServiceImpl$$EnhancerBySpringCGLIB$$c681f896</td>
+  </tr>
+  <tr>
+    <td class="name">TrabalhadorServiceImpl$$EnhancerBySpringCGLIB$$c681f896$$FastClassBySpringCGLIB$$e0dfa069</td>
+  </tr>
+  <tr>
+    <td class="name">TrabalhadorServiceImpl$$FastClassBySpringCGLIB$$61da68cb</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (9/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    94,1%
+  </span>
+  <span class="absValue">
+    (32/34)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.example.testeBackEnd.services.impl;
+&nbsp;
+&nbsp;import com.example.testeBackEnd.dto.DtoTrabalhador;
+&nbsp;import com.example.testeBackEnd.exceptions.BusinessException;
+&nbsp;import com.example.testeBackEnd.exceptions.NotFoundException;
+&nbsp;import com.example.testeBackEnd.model.Cargo;
+&nbsp;import com.example.testeBackEnd.model.Setor;
+&nbsp;import com.example.testeBackEnd.model.Trabalhador;
+&nbsp;import com.example.testeBackEnd.repository.TrabalhadorRepository;
+&nbsp;import com.example.testeBackEnd.services.CargoService;
+&nbsp;import com.example.testeBackEnd.services.SetorService;
+&nbsp;import com.example.testeBackEnd.services.TrabalhadorService;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;import org.springframework.stereotype.Service;
+&nbsp;import org.springframework.transaction.annotation.Transactional;
+&nbsp;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;@Service
+<b class="fc">&nbsp;public class TrabalhadorServiceImpl implements TrabalhadorService {</b>
+&nbsp;
+&nbsp;    @Autowired
+&nbsp;    private SetorService setorService;
+&nbsp;
+&nbsp;    @Autowired
+&nbsp;    private CargoService cargoService;
+&nbsp;
+&nbsp;    @Autowired
+&nbsp;    private TrabalhadorRepository trabalhadorRepository;
+&nbsp;
+&nbsp;    @Override
+&nbsp;    @Transactional(readOnly = true)
+&nbsp;    public void verificaCpfExistente(String cpf) {
+<b class="fc">&nbsp;        if (trabalhadorRepository.existsByCpf(cpf)) {</b>
+<b class="fc">&nbsp;            throw new BusinessException(&quot;Já existe um trabalhador cadastrado com o CPF informado.&quot;);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    @Transactional(readOnly = false)
+&nbsp;    public void salvarTrabalhador(DtoTrabalhador dtoTrabalhador) {
+<b class="fc">&nbsp;        Trabalhador trabalhador = Trabalhador.converterParaTrabalhador(dtoTrabalhador);</b>
+<b class="fc">&nbsp;        trabalhador.setId(null);</b>
+&nbsp;
+<b class="fc">&nbsp;        trabalhador.setSetor(setorService.buscarSetor(dtoTrabalhador.getSetor().getId()));</b>
+<b class="fc">&nbsp;        trabalhador.setCargo(cargoService.buscarCargo(dtoTrabalhador.getCargo().getId()));</b>
+&nbsp;
+<b class="fc">&nbsp;        trabalhadorRepository.save(trabalhador);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    @Transactional(readOnly = true)
+&nbsp;    public Trabalhador buscarTrabalhador(Long id) {
+<b class="fc">&nbsp;        return trabalhadorRepository.findById(id)</b>
+<b class="fc">&nbsp;                .orElseThrow(() -&gt; new NotFoundException(&quot;Trabalhador não encontrado.&quot;));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    @Transactional(readOnly = false)
+&nbsp;    public void atualizarTrabalhador(DtoTrabalhador dtoTrabalhador, Long id) {
+<b class="fc">&nbsp;        Trabalhador trabalhadorEncontrado = buscarTrabalhador(id);</b>
+&nbsp;
+<b class="fc">&nbsp;        if (!trabalhadorEncontrado.getNome().equals(dtoTrabalhador.getNome())) {</b>
+<b class="fc">&nbsp;            trabalhadorEncontrado.setNome(dtoTrabalhador.getNome());</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        if (!dtoTrabalhador.getCargo().getId().equals(trabalhadorEncontrado.getCargo().getId())) {</b>
+<b class="nc">&nbsp;            trabalhadorEncontrado.setCargo(cargoService.buscarCargo(dtoTrabalhador.getCargo().getId()));</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        if (!dtoTrabalhador.getSetor().getId().equals(trabalhadorEncontrado.getSetor().getId())) {</b>
+<b class="nc">&nbsp;            trabalhadorEncontrado.setSetor(setorService.buscarSetor(dtoTrabalhador.getSetor().getId()));</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    @Transactional(readOnly = true)
+&nbsp;    public DtoTrabalhador buscarDetalhesTrabalhador(Long id) {
+<b class="fc">&nbsp;        Trabalhador trabalhadorEncontrado = buscarTrabalhador(id);</b>
+<b class="fc">&nbsp;        DtoTrabalhador dtoTrabalhador = Trabalhador.converterParaDto(trabalhadorEncontrado);</b>
+&nbsp;
+<b class="fc">&nbsp;        dtoTrabalhador.setSetor(Setor.converterParaDto(trabalhadorEncontrado.getSetor()));</b>
+<b class="fc">&nbsp;        dtoTrabalhador.getSetor().setCargos(null);</b>
+&nbsp;
+<b class="fc">&nbsp;        dtoTrabalhador.setCargo(Cargo.converterParaDto(trabalhadorEncontrado.getCargo()));</b>
+&nbsp;
+<b class="fc">&nbsp;        return dtoTrabalhador;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    @Transactional(readOnly = false)
+&nbsp;    public void excluirTrabalhador(Long id) {
+<b class="fc">&nbsp;        Trabalhador trabalhadorEncontrado = this.buscarTrabalhador(id);</b>
+&nbsp;
+<b class="fc">&nbsp;        trabalhadorRepository.delete(trabalhadorEncontrado);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public List&lt;DtoTrabalhador&gt; listarTrabalhadores() {
+<b class="fc">&nbsp;        List&lt;Trabalhador&gt; trabalhadoresEncontrados = trabalhadorRepository.findAll();</b>
+<b class="fc">&nbsp;        List&lt;DtoTrabalhador&gt; trabalhadores = new ArrayList&lt;&gt;();</b>
+&nbsp;
+<b class="fc">&nbsp;        trabalhadoresEncontrados.forEach(trabalhador -&gt; {</b>
+<b class="fc">&nbsp;            DtoTrabalhador dtoTrabalhador = Trabalhador.converterParaDto(trabalhador);</b>
+&nbsp;
+<b class="fc">&nbsp;            dtoTrabalhador.setSetor(Setor.converterParaDto(trabalhador.getSetor()));</b>
+<b class="fc">&nbsp;            dtoTrabalhador.getSetor().setCargos(null);</b>
+&nbsp;
+<b class="fc">&nbsp;            dtoTrabalhador.setCargo(Cargo.converterParaDto(trabalhador.getCargo()));</b>
+&nbsp;
+<b class="fc">&nbsp;            trabalhadores.add(dtoTrabalhador);</b>
+&nbsp;        });
+&nbsp;
+<b class="fc">&nbsp;        return trabalhadores;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-09-30 18:47</div>
+</div>
+</body>
+</html>

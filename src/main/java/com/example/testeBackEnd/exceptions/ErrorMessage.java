@@ -10,7 +10,6 @@ import java.time.OffsetDateTime;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 public class ErrorMessage
 {

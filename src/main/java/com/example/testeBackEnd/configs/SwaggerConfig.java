@@ -29,8 +29,8 @@ public class SwaggerConfig {
     List<VendorExtension> vendorExtensions = new ArrayList<>();
 
     ApiInfo apiInfo = new ApiInfo(
-            "Spring Blog App RESTful Web Service Documentation",
-            "This page documents Spring Blog App RESTful Web Service Endpoints",
+            "Backend Test",
+            "This page documents Backend Test, with REST Web Service",
             "1.0",
             "https://github.com/",
             contact,

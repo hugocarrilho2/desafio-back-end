@@ -1,0 +1,101 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > SetorService</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.example.testeBackEnd.services</a>
+</div>
+
+<h1>Coverage Summary for Class: SetorService (com.example.testeBackEnd.services)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+</tr>
+  <tr>
+    <td class="name">SetorService$MockitoMock$422140571</td>
+  </tr>
+  <tr>
+    <td class="name">SetorService$MockitoMock$422140571$auxiliary$l96I9ReX</td>
+  </tr>
+  <tr>
+    <td class="name">SetorService$MockitoMock$422140571$auxiliary$MjEUY1i1</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.example.testeBackEnd.services;
+&nbsp;
+&nbsp;import com.example.testeBackEnd.dto.DtoSetor;
+&nbsp;import com.example.testeBackEnd.model.Cargo;
+&nbsp;import com.example.testeBackEnd.model.Setor;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;public interface SetorService {
+&nbsp;    void verificaSetorExistente(DtoSetor dtoSetor);
+&nbsp;
+&nbsp;    Setor salvar(DtoSetor dtoSetor);
+&nbsp;
+&nbsp;    List&lt;DtoSetor&gt; listarSetores();
+&nbsp;
+&nbsp;    Setor buscarSetor(Long id);
+&nbsp;
+&nbsp;    DtoSetor buscarDetalhesSetor(Long id);
+&nbsp;
+&nbsp;    void excluirSetor(Long id);
+&nbsp;
+&nbsp;    void atualizarSetor(DtoSetor dtoSetor, Long idSetor);
+&nbsp;
+&nbsp;    boolean verificaInexistenciaCargo(List&lt;Cargo&gt; cargos, String nome);
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-09-30 18:47</div>
+</div>
+</body>
+</html>

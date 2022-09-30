@@ -1,0 +1,164 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > SetorController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.example.testeBackEnd.controller</a>
+</div>
+
+<h1>Coverage Summary for Class: SetorController (com.example.testeBackEnd.controller)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">SetorController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (13/13)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.example.testeBackEnd.controller;
+&nbsp;
+&nbsp;import com.example.testeBackEnd.dto.DtoSetor;
+&nbsp;import com.example.testeBackEnd.model.Setor;
+&nbsp;import com.example.testeBackEnd.services.CargoService;
+&nbsp;import com.example.testeBackEnd.services.SetorService;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;import org.springframework.http.HttpStatus;
+&nbsp;import org.springframework.http.ResponseEntity;
+&nbsp;import org.springframework.web.bind.annotation.*;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;@RestController
+&nbsp;@RequestMapping(value = &quot;/setores&quot;)
+<b class="fc">&nbsp;public class SetorController</b>
+&nbsp;{
+&nbsp;    @Autowired
+&nbsp;    private SetorService setorService;
+&nbsp;
+&nbsp;    @Autowired
+&nbsp;    private CargoService cargoService;
+&nbsp;
+&nbsp;    @PostMapping
+&nbsp;    public ResponseEntity&lt;?&gt; salvarSetor(@RequestBody DtoSetor dtoSetor) {
+<b class="fc">&nbsp;        setorService.verificaSetorExistente(dtoSetor);</b>
+<b class="fc">&nbsp;        Setor setorSalvo = setorService.salvar(dtoSetor);</b>
+&nbsp;
+<b class="fc">&nbsp;        cargoService.verificaCargoExistente(dtoSetor.getCargos());</b>
+<b class="fc">&nbsp;        cargoService.salvar(dtoSetor.getCargos(), setorSalvo);</b>
+&nbsp;
+<b class="fc">&nbsp;        return ResponseEntity.status(HttpStatus.CREATED).body(&quot;Setor criado com sucesso!&quot;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @GetMapping
+&nbsp;    public ResponseEntity&lt;List&lt;?&gt;&gt; listarSetores(){
+<b class="fc">&nbsp;        return ResponseEntity.status(HttpStatus.OK).body(setorService.listarSetores());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @GetMapping(value = &quot;/{idSetor}&quot;)
+&nbsp;    public ResponseEntity&lt;DtoSetor&gt; buscarSetor(@PathVariable(&quot;idSetor&quot;) Long idSetor) {
+<b class="fc">&nbsp;        DtoSetor dtoSetor = setorService.buscarDetalhesSetor(idSetor);</b>
+&nbsp;
+<b class="fc">&nbsp;        return ResponseEntity.status(HttpStatus.OK).body(dtoSetor);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @PutMapping(value = &quot;/{idSetor}&quot;)
+&nbsp;    public ResponseEntity&lt;Void&gt; atualizarSetor(@PathVariable(&quot;idSetor&quot;) Long idSetor, @RequestBody DtoSetor dtoSetor) {
+<b class="fc">&nbsp;        setorService.atualizarSetor(dtoSetor, idSetor);</b>
+&nbsp;
+<b class="fc">&nbsp;        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @DeleteMapping(value = &quot;/{idSetor}&quot;)
+&nbsp;    public ResponseEntity&lt;Void&gt; excluirSetor(@PathVariable(&quot;idSetor&quot;) Long idSetor) {
+<b class="fc">&nbsp;        setorService.excluirSetor(idSetor);</b>
+&nbsp;
+<b class="fc">&nbsp;        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-09-30 18:47</div>
+</div>
+</body>
+</html>

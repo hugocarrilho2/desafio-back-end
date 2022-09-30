@@ -1,0 +1,182 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Cargo</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.example.testeBackEnd.model</a>
+</div>
+
+<h1>Coverage Summary for Class: Cargo (com.example.testeBackEnd.model)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Cargo</td>
+<td class="coverageStat">
+  <span class="percent">
+    88,9%
+  </span>
+  <span class="absValue">
+    (8/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    92,3%
+  </span>
+  <span class="absValue">
+    (12/13)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">Cargo$CargoBuilder</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">Cargo$HibernateProxy$1dLR4yIW</td>
+  </tr>
+  <tr>
+    <td class="name">Cargo$HibernateProxy$3dYZ2oqW</td>
+  </tr>
+  <tr>
+    <td class="name">Cargo$HibernateProxy$IWjImMIv</td>
+  </tr>
+  <tr>
+    <td class="name">Cargo$HibernateProxy$kLZtCGPS</td>
+  </tr>
+  <tr>
+    <td class="name">Cargo$HibernateProxy$WPpA1eeo</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    90%
+  </span>
+  <span class="absValue">
+    (9/10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    92,9%
+  </span>
+  <span class="absValue">
+    (13/14)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.example.testeBackEnd.model;
+&nbsp;
+&nbsp;import com.example.testeBackEnd.dto.DtoCargo;
+&nbsp;import lombok.*;
+&nbsp;import org.springframework.beans.BeanUtils;
+&nbsp;
+&nbsp;import javax.persistence.*;
+&nbsp;
+<b class="fc">&nbsp;@Builder</b>
+&nbsp;@Getter
+<b class="fc">&nbsp;@Setter</b>
+<b class="fc">&nbsp;@AllArgsConstructor</b>
+<b class="fc">&nbsp;@NoArgsConstructor</b>
+&nbsp;@Entity(name = &quot;cargo&quot;)
+&nbsp;public class Cargo {
+&nbsp;    @Id
+&nbsp;    @GeneratedValue(strategy = GenerationType.IDENTITY)
+<b class="fc">&nbsp;    private Long id;</b>
+&nbsp;
+&nbsp;    @Column(nullable = false, unique = true)
+<b class="fc">&nbsp;    private String nome;</b>
+&nbsp;
+&nbsp;    @ManyToOne
+<b class="nc">&nbsp;    private Setor setor;</b>
+&nbsp;
+&nbsp;    public static DtoCargo converterParaDto(Cargo cargo) {
+<b class="fc">&nbsp;        DtoCargo dtoCargo = new DtoCargo();</b>
+<b class="fc">&nbsp;        BeanUtils.copyProperties(cargo, dtoCargo);</b>
+<b class="fc">&nbsp;        return dtoCargo;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public static Cargo converterParaCargo(DtoCargo dtoCargo) {
+<b class="fc">&nbsp;        Cargo cargo = new Cargo();</b>
+<b class="fc">&nbsp;        BeanUtils.copyProperties(dtoCargo, cargo);</b>
+&nbsp;
+<b class="fc">&nbsp;        return cargo;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-09-30 18:47</div>
+</div>
+</body>
+</html>

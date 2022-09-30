@@ -23,4 +23,17 @@ public class HandlerException
 
         return ResponseEntity.status(status).body(errorMessage);
     }
+
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<Object> handlerNotFoundException(NotFoundException notFoundException)
+    {
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        ErrorMessage errorMessage = new ErrorMessage();
+        errorMessage.setTimestamp(OffsetDateTime.now());
+        errorMessage.setMessage(notFoundException.getMessage());
+        errorMessage.setStatus(status.value());
+
+        return ResponseEntity.status(status).body(errorMessage);
+    }
+
 }
